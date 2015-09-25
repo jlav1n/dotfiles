@@ -1,0 +1,1 @@
+screen -x -S ${1:-$USER} || screen -S ${1:-$USER}

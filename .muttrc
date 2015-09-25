@@ -1,0 +1,268 @@
+## ========================================================================
+## Variable settings
+## ========================================================================
+
+###### A
+   set alias_file=~/.muttrc # file to use for saving new aliases
+   set allow_8bit    # unset:  convert 8bit data to 7bit
+   set ascii_chars	# set: use ASCII characters to build the thread tree
+
+   set attribution="Quoting %n (%a):"  # attribution given to quoted text
+
+   set autoedit         # set: skip the prompts for To: and Subject:
+                        #      before invoking the editor for composing
+###### C
+ set noconfirmappend  # set: prompt for confirmation on appending mail to folder
+ set   confirmcreate  # set: prompt for confirmation on creation of folders
+ set   copy           # Always keep a copy of my mails!
+
+###### D
+ set delete=yes
+
+###### E
+ set   edit_hdrs        # set: header editing!  total control over headers! :-)
+set   editor="vim +'set noai ts=8'"
+
+###### F
+set   folder=~/Mail    # directory with all mail folders
+#set   folder="~/Maildir/"    # directory with all mail folders
+							# also set mbox_type, spoolfile
+
+###### H
+ set   history=50 # 0.51: number of input lines for prompts to remember
+
+###### I
+ set   include      # set: include mail as quoted text in replies
+
+###### L
+###### M
+#set   mbox_type=Maildir
+
+###### N
+ set nomark_old # set: make distinction between New mail and Old mail.
+ set nomove  # do not move read mails from mailbox to $mbox (was: "set hold")
+
+###### P
+  set pager_index_lines=0   # number of lines to see from the index
+  set pager_stop            # next-undeleted when the end of the mail is shown
+ set noprompt_after  # set: gives you a prompt when pager exits
+
+###### Q
+set quote_regexp="^[>|\#:}] *" # DEFAULT
+
+###### R
+ set   read_inc=1     # '1': show count number with *every* mail.
+ set   recall=no      # do not prompt for recalling postponed mails with 'm'
+ set   record=+Sent
+ set   reply_to=ask-yes   # "reply":          set:  Use address in Reply-To?
+ set   reverse_alias  # show the name of sender as set with my alias for him
+ set   reverse_name   # reply as the user to whom the mail was sent to
+
+###### S
+ set   save_name      # set: save outbound mail to =username if it exists
+ set   shell=tcsh     # use the tcsh for shell commands
+ set   sort=threads  #reverse-date # sorting method - I definitely like "threads" best
+ set   sort_aux=date
+#set   spoolfile="~/Maildir/"
+ set   status_on_top # set: present the status bar at top, ie before the index
+ set   strict_threads # set: use references: for threading only, ie do not
+			# thread by subject or in-reply-to
+
+###### T
+   set tilde  # show non-existant lines of text with a tilde at begin-of-line
+   set timeout=60    # time in seconds until mutt checks folder for new mail
+   set tmpdir="/tmp" # directory where temporary files are to be placed
+   set to_chars="X+TCF"
+
+###### U
+###### V
+###### W
+   set write_inc=1 # number - display increment count for every n-th mail
+
+###### X
+###### Y
+###### Z
+
+## ======================================================================
+## Format Strings:
+## "forw_format", "hdr_format", "pager_format", and "status_format".
+## ======================================================================
+
+set forw_format="(forw) %s"
+
+    set hdr_format="%4C %Z %[!%y%m%d] %-17.17F (%3l) %s"  # Sven's favourite
+
+    set pager_format="%S [%C/%T] %n (%l) %s"      # Sven's favourite
+
+    set status_format="%v: %f (%s) [%M/%m] [N=%n,*=%t,post=%p,new=%b]"
+
+## ========================================================================
+## End of variables
+## ========================================================================
+
+## ========================================================================
+## COMMANDS:
+## (un)alias, alternates, bind, (un)ignore, lists, my_hrd, sort, source,
+## For a complete description see page
+## http://www.math.fu-berlin.de/~guckes/mutt/mutt.manual.html or
+## http://www.cs.hmc.edu/~me/mutt/commands.html
+## ========================================================================
+
+## Command alias :
+## Syntax: alias <name> <address_list>
+## <address_list> := <address>{,<address>}
+
+## ========================
+## Bindings for attach menu
+## ========================
+
+   bind attach ' ' select-entry
+   bind attach \Cg exit
+
+   bind index  Q    quit
+   bind index  q    exit
+   bind index  P    recall-message # 'R'ecall-message move to 'P' [0.46]
+#  bind index  L    bottom-of-page # overrides 'L'ist-reply
+   bind index  R    list-reply     # 'L'ist-reply moved to 'R'
+
+## ========================
+## Bindings for editor
+## ========================
+
+   bind editor \C? backspace
+
+## ==============================
+## Bindings for index *and* pager
+## ==============================
+
+## Jumping to the next mail that is still unread.
+## Even though I use both New and Old mails
+## I usually prefer "jump-unread" to "jump-new".
+## The TAB key (\t) is convenient for this.
+## To allow jumping to the previous unread mail
+## I use the comma as a prefix to this command:
+   bind index   \t          next-unread
+   bind pager   \t          next-unread
+   bind index  ,\t      previous-unread
+   bind pager  ,\t      previous-unread
+
+## ======================
+## Bindings for index
+## ======================
+
+# index bindings - obvious stuff
+
+   bind index pagedown     next-page
+   bind index pageup   previous-page
+#  bind index home     first-message	# error with mutt-0.89.1
+#  bind index end       last-message	# error with mutt-0.89.1
+
+# index bindings - vi (editor) style
+
+#  bind index \Cg        group-reply # \Cg --> "group-reply"
+#  bind index g        first-message #  g  was "group-reply"
+#  bind index G         last-message	# error with mutt-0.89.1
+
+   bind index \Cb      previous-page
+   bind index \Cf          next-page # \Cf was 'f'orget-passphrase
+#   bind index \Cv  forget-passphrase # \Cv --> 'f'orget-passphrase
+
+# index bindings - nn (newsreader) style
+
+   bind index <        previous-page
+   bind index >            next-page
+#  bind index ^       first-message	# error with mutt-0.89.1
+#  bind index $        last-message	# error with mutt-0.89.1
+   bind index \Cx      sync-mailbox  # \Cx ->"sync-mailbox"
+
+# index bindings - elm (mailer) style
+
+   bind index +            next-page
+   bind index -        previous-page
+
+   macro index V "!mutt -v | less"
+   macro index "+so" ":source "
+#   macro index U "|/usr/bin/urlscan\n"
+   bind  index \cU undelete-pattern
+#   macro pager U "|/usr/bin/urlscan\n"
+
+## ===========================
+## Bindings for pager
+## ===========================
+
+# pager bindings - vi style bindings
+
+   bind pager \Cu half-up
+   bind pager \Cd half-down
+
+   bind pager \Cm next-line
+   bind pager \Ce next-line
+   bind pager \Cy previous-line
+   bind pager +   next-line
+   bind pager -   previous-line
+
+   bind pager ' ' next-page
+   bind pager \Cf next-page
+   bind pager \Cn next-page
+
+   bind pager -   previous-page
+   bind pager \Cb previous-page       # was "browse-url"
+#  bind pager  ,B browse-url          # compensate for \Cb
+   bind pager \Cn half-down
+   bind pager \Cp half-up
+
+   bind pager t   top
+   bind pager ^   top
+
+   bind pager G   bottom
+   bind pager $   bottom
+
+   bind pager /   search
+
+   bind pager n   next-undeleted
+## bind pager N
+
+   bind pager p   previous-undeleted
+   bind pager P   print-message
+
+   bind pager R   list-reply
+   bind pager L   list-reply
+
+## Adding a prefix to index mail commands
+## NOTE: Using ESC as prefix requires a small pause
+## between ESC and the following key - therefore
+## I use the comma as the prefix key  :-)
+## I once used the backslash key - but \n, \r, and \t
+## are used for newline, return, and tab.  *sigh*
+   bind pager ,b   bounce-message    
+   bind pager ,f   forward-message   
+   bind pager ,g   group-reply       
+   bind pager ,m   mail              
+   bind pager ,L   list-reply        
+   bind pager ,n   reply             
+   bind pager ,r   reply             
+   bind pager ,a   reply               # 'a' is for "answer"
+#  jump                commands
+   bind pager ,j   next-undeleted    
+   bind pager ,k   previous-undeleted
+
+## Bind default mail commands to jump commands
+   bind pager backspace   previous-line     
+#  bind pager delete      previous-line       # yields error!
+   bind pager b   previous-page     
+   bind pager f   next-page         
+   bind pager g   top               
+   bind pager j   next-line         
+   bind pager k   previous-line     
+   bind pager m   noop              
+   bind pager L   noop              
+   bind pager r   reply
+                      
+   bind pager :  enter-command      
+
+## Ignore everything but the really important lines:
+   ignore *
+   unignore from date subject to cc reply-to:
+   unignore organization organisation x-mailer: x-newsreader: x-mailing-list:
+   unignore posted-to:
+
