@@ -61,6 +61,7 @@ alias dird='ls -l $* |grep "^d"'
 alias gs='git status -sb'
 alias h='history 20'
 alias hg='history | grep '
+alias hh='tail -50 ~/.history'
 alias hi='echo "Hello, pleased to see you."'
 alias m='mutt -z'
 alias mailmsgs='tail -74 /var/log/maillog'
@@ -74,6 +75,7 @@ alias recon='i/bin/interchange -recon '
 alias reb='yes | i/bin/restart; tail -f i/debug.log i/error.log'
 alias ree='yes | i/bin/restart; tail -f i/error.log'
 alias red='yes | i/bin/restart; tail -f i/debug.log'
+alias sl='screen -ls'
 alias sx='screen -x'
 alias vi=vim
 alias wi=whoami
@@ -83,3 +85,13 @@ setopt no_hist_verify
 export PAGER="less -R -X -x4"
 export MINIVEND_DISABLE_UTF8=1
 export TERM=xterm
+
+mkdir -p ~/.state
+if [ ! -z "$SSH_AUTH_SOCK" ]; then
+    screen_ssh_agent=${HOME}/.state/ssh-agent-screen
+    if [ "$TERM" = "screen" ]; then
+        SSH_AUTH_SOCK=${screen_ssh_agent}; export SSH_AUTH_SOCK
+    else
+        ln -snf ${SSH_AUTH_SOCK} ${screen_ssh_agent}
+    fi
+fi
