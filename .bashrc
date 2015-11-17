@@ -29,6 +29,7 @@ export PROMPT_DIRTRIM=3
 export PS1='\u@\h \[\033[1;33m\]\w\[\033[0m\]$(parse_git_branch)$ '
 
 export HISTTIMEFORMAT="%F %T "
+export EDITOR=vim
 
 # ssh agent handling
 mkdir -p ~/.state
