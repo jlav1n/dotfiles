@@ -10,7 +10,8 @@ PATH=/home/camp/bin:$PATH
 alias ci='camp-info'
 alias cia='camp-info --all'
 alias cls='printf "\033c"'
-alias dir=ll
+alias dir='ls -l --color=auto'
+alias ll='ls -l --color=auto'
 alias sl='screen -ls'
 bind '"\C-d":complete'
 
