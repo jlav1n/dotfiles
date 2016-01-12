@@ -86,6 +86,9 @@ noremap <F4> :Tidy<CR>
 command -range=% -nargs=* HTMLTidy <line1>,<line2>!tidy -q -wrap 150
 noremap <F5> :HTMLTidy<CR>
 
+au BufNewFile,BufRead *.hbs set filetype=html
+au BufNewFile,BufRead *.t set filetype=perl
+
 " dbext
 let g:dbext_default_buffer_lines = 20
 let g:dbext_default_history_file = '~/.dbext_history'
