@@ -13,6 +13,7 @@ alias cls='printf "\033c"'
 alias dir='ls -l --color=auto'
 alias ll='ls -l --color=auto'
 alias sl='screen -ls'
+alias tl='tmux ls'
 bind '"\C-d":complete'
 
 # http://henrik.nyh.se/2008/12/git-dirty-prompt
