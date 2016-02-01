@@ -1,1 +1,1 @@
-tmux attach -t josh || tmux new -s ${1:-$USER} bash
+tmux attach -t ${1:-$USER} || tmux new -s ${1:-$USER} bash
