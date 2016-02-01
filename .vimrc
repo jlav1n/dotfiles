@@ -11,8 +11,9 @@ syntax on
 "set formatoptions=tcqn1r
 "set flp+=\\\|^\\*\\s*
 
-:nmap <leader>t :set expandtab<CR>
-:nmap <leader>T :set noexpandtab<CR>
+nmap <leader>h :nohlsearch<CR>
+nmap <leader>t :set expandtab<CR>
+nmap <leader>T :set noexpandtab<CR>
 
 " fix screen syntax redraw problems:
 noremap <S-F12> <Esc>:syntax sync fromstart<CR>

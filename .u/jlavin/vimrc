@@ -75,8 +75,9 @@ map  !G perl -MText::Autoformat -e 'autoformat { tabspace => 4 }'
 vmap    _L      "zxi[L][/L]F["zP
 vmap          !perl -MText::Autoformat -0777 -e 'autoformat {all=>1}'
 
-:nmap <leader>t :set expandtab<CR>
-:nmap <leader>T :set noexpandtab<CR>
+nmap <leader>h :nohlsearch<CR>
+nmap <leader>t :set expandtab<CR>
+nmap <leader>T :set noexpandtab<CR>
 
 set keywordprg=perldoc\ -f
 
@@ -90,6 +91,9 @@ au BufNewFile,BufRead *.hbs set filetype=html
 au BufNewFile,BufRead *.t set filetype=perl
 
 " dbext
-let g:dbext_default_buffer_lines = 20
-let g:dbext_default_history_file = '~/.dbext_history'
-let g:dbext_default_history_size = 5000
+"let g:dbext_default_buffer_lines = 20
+"let g:dbext_default_history_file = '~/.dbext_history'
+"let g:dbext_default_history_size = 5000
+" profiles:
+"let g:dbext_default_profile_mysite = 'type=MYSQL:user=USER:passwd=PASS:dbname=MYSITE'
+"let g:dbext_default_profile = 'mysite'
