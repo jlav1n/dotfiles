@@ -6,9 +6,9 @@ syntax on
 let $BASH_ENV = '~/.bash_aliases_for_vim'
 
 set matchpairs+=<:>
-map  !G perl -MText::Autoformat -e 'autoformat { tabspace => 4 }'
+map  !G perl -MText::Autoformat -X -e 'autoformat { tabspace => 4 }'
 vmap    _L      "zxi[L][/L]F["zP
-vmap          !perl -MText::Autoformat -0777 -e 'autoformat {all=>1}'
+vmap          !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1}'
 map		<F12>	:if exists("syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif<CR>
 
 "set formatoptions=tcqn1r
