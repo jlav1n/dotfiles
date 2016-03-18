@@ -13,8 +13,13 @@ alias cls='printf "\033c"'
 alias dir='ls -l --color=auto'
 alias ll='ls -l --color=auto'
 alias sl='screen -ls'
-alias tl='tmux ls'
+alias T=tmux_alias
+alias tl='tmux -L jlavin ls'
 bind '"\C-d":complete'
+
+function tmux_alias {
+    tmux -f ~/.u/jlavin/tmux.conf -L jlavin attach -t ${1:-$USER} || tmux -f ~/.u/jlavin/tmux.conf -L jlavin new -s ${1:-$USER}
+}
 
 # http://henrik.nyh.se/2008/12/git-dirty-prompt
 # http://www.simplisticcomplexity.com/2008/03/13/show-your-git-branch-name-in-your-prompt/
