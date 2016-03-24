@@ -11,6 +11,11 @@ vmap    _L      "zxi[L][/L]F["zP
 vmap          !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1}'
 map		<F12>	:if exists("syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif<CR>
 
+vmap <leader>w !perl -I../../../lib -I../../lib -wc<CR>
+nmap <leader>w :!perl -I../../../lib -I../../lib -wc %<CR>
+vmap <leader>r !perl<CR>
+nmap <leader>r :w <Bar> !perl %<CR>
+
 "set formatoptions=tcqn1r
 "set flp+=\\\|^\\*\\s*
 
@@ -29,6 +34,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 autocmd FileType perl setlocal keywordprg=sh\ -c\ 'perldoc\ -f\ \$1\ \|\|\ perldoc\ \$1'\ --
 autocmd FileType css setlocal tabstop=2 shiftwidth=2
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
 command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q -l=150
 noremap <F4> :Tidy<CR>
