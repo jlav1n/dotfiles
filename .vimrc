@@ -1,5 +1,5 @@
 set expandtab tabstop=4 shiftwidth=4
-set ai ignorecase smartcase hlsearch incsearch copyindent
+set ai ignorecase smartcase smarttab hlsearch incsearch copyindent
 
 syntax on
 
@@ -11,10 +11,13 @@ vmap    _L      "zxi[L][/L]F["zP
 vmap          !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1}'
 map		<F12>	:if exists("syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif<CR>
 
-vmap <leader>w !perl -I../../../lib -I../../lib -wc<CR>
-nmap <leader>w :!perl -I../../../lib -I../../lib -wc %<CR>
-vmap <leader>r !perl<CR>
-nmap <leader>r :w <Bar> !perl %<CR>
+vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 
 "set formatoptions=tcqn1r
 "set flp+=\\\|^\\*\\s*
@@ -36,6 +39,15 @@ autocmd FileType perl setlocal keywordprg=sh\ -c\ 'perldoc\ -f\ \$1\ \|\|\ perld
 autocmd FileType css setlocal tabstop=2 shiftwidth=2
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
+command! Q q " Bind :Q to :q
+command! W w
+command! Wq wq
+
+" Better? completion on command line
+set wildmenu
+" What to do when I press 'wildchar'. Worth tweaking to see what feels right.
+set wildmode=list:full
+
 command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q -l=150
 noremap <F4> :Tidy<CR>
 
@@ -52,10 +64,18 @@ au BufNewFile,BufRead *.pl6 set filetype=perl6
 au BufNewFile,BufRead *.pm6 set filetype=perl6
 
 highlight Search ctermfg=Black
-highlight Visual ctermfg=Black
+"highlight Visual ctermfg=Black
 highlight DiffAdd ctermfg=Black
 highlight DiffChange ctermfg=Black
 highlight ColorColumn ctermfg=Black
+
+" Make the omnicomplete text readable
+highlight PmenuSel ctermfg=white
+
+" Make it more obvious which paren I'm on
+hi MatchParen cterm=none ctermbg=black ctermfg=yellow
+
+set tags=./tags;
 
 " dbext
 "let g:dbext_default_buffer_lines = 20
