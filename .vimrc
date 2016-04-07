@@ -6,9 +6,9 @@ syntax on
 let $BASH_ENV = '~/.bash_aliases_for_vim'
 
 set matchpairs+=<:>
-map  !G perl -MText::Autoformat -X -e 'autoformat { tabspace => 4 }'
+map  <leader>f !G perl -MText::Autoformat -X -e 'autoformat { tabspace => 4 }'
+vmap <leader>f !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1}'
 vmap    _L      "zxi[L][/L]F["zP
-vmap          !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1}'
 map		<F12>	:if exists("syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif<CR>
 
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
@@ -73,7 +73,7 @@ highlight ColorColumn ctermfg=Black
 highlight PmenuSel ctermfg=white
 
 " Make it more obvious which paren I'm on
-hi MatchParen cterm=none ctermbg=black ctermfg=yellow
+hi MatchParen ctermfg=black
 
 set tags=./tags;
 
