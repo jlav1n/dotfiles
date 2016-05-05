@@ -1,5 +1,6 @@
 set expandtab tabstop=4 shiftwidth=4
 set ai ignorecase smartcase smarttab hlsearch incsearch copyindent
+set autowrite
 
 syntax on
 
@@ -11,12 +12,12 @@ vmap <leader>f !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1}'
 vmap    _L      "zxi[L][/L]F["zP
 map		<F12>	:if exists("syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif<CR>
 
-vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+vmap <Leader>b :<C-U>!git blame -w <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 " Edit another file in the same directory as the current file
 " uses expression to extract path from current file's path
 map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>s :sp <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 
 "set formatoptions=tcqn1r
@@ -35,7 +36,6 @@ filetype plugin on
 " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-autocmd FileType perl setlocal keywordprg=sh\ -c\ 'perldoc\ -f\ \$1\ \|\|\ perldoc\ \$1'\ --
 autocmd FileType css setlocal tabstop=2 shiftwidth=2
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
@@ -71,11 +71,14 @@ highlight ColorColumn ctermfg=Black
 
 " Make the omnicomplete text readable
 highlight PmenuSel ctermfg=white
-
 " Make it more obvious which paren I'm on
-hi MatchParen ctermfg=black
+highlight MatchParen ctermfg=black
+" Make search wrapping more obvious
+highlight WarningMsg ctermfg=white ctermbg=red guifg=White guibg=Red gui=None
 
 set tags=./tags;
+
+execute pathogen#infect()
 
 " dbext
 "let g:dbext_default_buffer_lines = 20
