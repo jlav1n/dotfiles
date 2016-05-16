@@ -132,7 +132,7 @@ au BufNewFile,BufRead *.pl6 set filetype=perl6
 au BufNewFile,BufRead *.pm6 set filetype=perl6
 
 highlight Search ctermfg=Black
-highlight Visual ctermfg=Black
+"highlight Visual ctermfg=Black
 highlight DiffAdd ctermfg=Black
 highlight DiffChange ctermfg=Black
 highlight ColorColumn ctermfg=Black
