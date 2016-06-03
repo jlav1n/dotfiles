@@ -67,6 +67,8 @@ export GIT_AUTHOR_EMAIL=foo@bar.com
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 
+export GIT_EDITOR='vim -u ~/.u/jlavin/vimrc'
 alias vi='vim -u ~/.u/jlavin/vimrc'
 
+#alias re='i/bin/restart'
 #export TERM=xterm-256color
