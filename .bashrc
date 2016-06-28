@@ -12,16 +12,24 @@ alias cia='camp-info --all'
 alias cls='printf "\033c"'
 alias dir='ls -l --color=auto'
 alias ll='ls -l --color=auto'
+alias S='screen -c ~/.u/jlavin/screenrc -x -S ${1:-$USER} || screen -c ~/.u/jlavin/screenrc -S ${1:-$USER}'
 alias sl='screen -ls'
-alias tl='tmux ls'
+alias T=tmux_alias
+alias tl='tmux -L jlavin ls'
 bind '"\C-d":complete'
+
+shopt -s histverify
+
+function tmux_alias {
+    tmux -f ~/.u/jlavin/tmux.conf -L jlavin attach -t ${1:-$USER} || tmux -f ~/.u/jlavin/tmux.conf -L jlavin new -s ${1:-$USER}
+}
 
 # http://henrik.nyh.se/2008/12/git-dirty-prompt
 # http://www.simplisticcomplexity.com/2008/03/13/show-your-git-branch-name-in-your-prompt/
 #   username@Machine ~/dev/dir[master]$   # clean working directory
 #   username@Machine ~/dev/dir[master*]$  # dirty working directory
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+  [[ $(git status --porcelain 2> /dev/null | tail -n1) != "" ]] && echo "*"
 }
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
@@ -43,3 +51,7 @@ if [ ! -z "$SSH_AUTH_SOCK" ]; then
         ln -snf ${SSH_AUTH_SOCK} ${screen_ssh_agent}
     fi
 fi
+
+alias prove='/home/camp/.plenv/shims/prove'
+
+export PERLDOC_PAGER='less -+C'
