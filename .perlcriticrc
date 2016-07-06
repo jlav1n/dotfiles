@@ -1,0 +1,509 @@
+# Encapsulation of End Point's PBP Stances in a format Perl::Critic can read
+#
+# Here are the list of severities we're assigning to each of EP's weightings:
+#    A[lways]       - Severity 5; these will always show on perlcritic invocation
+#    R[ecommended]  - Severity 4
+#    D[on't ]C[are] - Severity 2
+#    N[ever]        - Negated Policy; in time, these may become actual policies to
+#                     test against, currently none are represented in the file.
+#    XXX            - undetermined stance; we'll use perlcritic's default severity
+#                     until policy's stance is classified.
+
+# Currently there are 134 defined policies, of which EP has a known
+# stance on all but 34.  (These will be updated as I get more
+# information.)
+
+[BuiltinFunctions::ProhibitLvalueSubstr]
+#    Use 4-argument "substr" instead of writing "substr($foo, 2, 6) = $bar"
+#    [Severity 3]
+#    [EP #107] - R
+severity = 4
+
+[BuiltinFunctions::ProhibitReverseSortBlock]
+#    Forbid $b before $a in sort blocks [Severity 1]
+#    [EP #100?] - R
+severity = 4
+
+[BuiltinFunctions::ProhibitSleepViaSelect]
+#    Use Time::HiRes instead of something like "select(undef, undef, undef,
+#    .05)" [Severity 5]
+#    [EP #110] - R
+severity = 4
+
+[BuiltinFunctions::ProhibitStringyEval]
+#    Write "eval { my $foo; bar($foo) }" instead of "eval "my $foo;
+#    bar($foo);"" [Severity 5]
+#    [EP #105] - R
+severity = 4
+
+[BuiltinFunctions::ProhibitStringySplit]
+#    Write "split /-/, $string" instead of "split '-', $string" [Severity 3]
+#    [EP #170?] - R
+severity = 4
+
+[BuiltinFunctions::ProhibitUniversalCan]
+#    Write "eval { $foo->can($name) }" instead of "UNIVERSAL::can($foo,
+#    $name)" [Severity 3]
+#    [EP #???] - XXX
+
+[BuiltinFunctions::ProhibitUniversalIsa]
+#    Write "eval { $foo->isa($pkg) }" instead of "UNIVERSAL::isa($foo, $pkg)"
+#    [Severity 3]
+#    [EP #???] - XXX
+
+[BuiltinFunctions::ProhibitVoidGrep]
+#    Don't use "grep" in void contexts. [Severity 3]
+#    [EP #???] - XXX
+
+[BuiltinFunctions::ProhibitVoidMap]
+#    Don't use "map" in void contexts. [Severity 3]
+#    [EP #74] - R
+severity = 4
+
+[BuiltinFunctions::RequireBlockGrep]
+#    Write "grep { $_ =~ /$pattern/ } @list" instead of "grep /$pattern/,
+#    @list" [Severity 4]
+#    [EP #111] - R
+severity = 4
+
+[BuiltinFunctions::RequireBlockMap]
+#    Write "map { $_ =~ /$pattern/ } @list" instead of "map /$pattern/,
+#    @list" [Severity 4]
+#    [EP #111] - R
+severity = 4
+
+[BuiltinFunctions::RequireGlobFunction]
+#    Use "glob q{*}" instead of <*> [Severity 5]
+#    [EP #109] - A
+severity = 5
+
+[BuiltinFunctions::RequireSimpleSortBlock]
+#    Sort blocks should have a single statement [Severity 3]
+#    [EP #99?] - XXX
+
+[ClassHierarchies::ProhibitAutoloading]
+#    AUTOLOAD methods should be avoided [Severity 3]
+#    [EP #218] - R
+severity = 4
+
+[ClassHierarchies::ProhibitExplicitISA]
+#    Employ "use base" instead of @ISA [Severity 3]
+#    [EP #207] - A
+severity = 5
+
+[ClassHierarchies::ProhibitOneArgBless]
+#    Write "bless {}, $class;" instead of just "bless {};" [Severity 5]
+#    [EP #209] - A
+severity = 5
+
+[CodeLayout::ProhibitHardTabs]
+#    Use spaces instead of tabs. [Severity 3]
+#    [EP #11] - A (caveat on existing)
+
+[CodeLayout::ProhibitParensWithBuiltins]
+#    Write "open $handle, $path" instead of "open($handle, $path)" [Severity
+#    1]
+#    [EP #4] - R
+severity = 4
+
+[CodeLayout::ProhibitQuotedWordLists]
+#    Write "qw(foo bar baz)" instead of "('foo', 'bar', 'baz')" [Severity 2]
+#    [EP #???] - XXX
+
+[CodeLayout::ProhibitTrailingWhitespace]
+#    Don't use whitespace at the end of lines. [Severity 1]
+#    [EP #???] - XXX
+
+[CodeLayout::RequireConsistentNewlines]
+#    Use the same newline through the source [Severity 4]
+#    [EP #???] - XXX
+
+[CodeLayout::RequireTidyCode]
+#    Must run code through perltidy. [Severity 1]
+#    [EP #22] - DC
+severity = 2
+
+[CodeLayout::RequireTrailingCommas]
+#    Put a comma at the end of every multi-line list declaration, including
+#    the last one. [Severity 1]
+#    [EP #8] - A
+severity = 5
+
+[ControlStructures::ProhibitCStyleForLoops]
+#    Write "for(0..20)" instead of "for($i=0; $i<=20; $i++)" [Severity 2]
+#    [EP #67] - A
+severity = 5
+
+[ControlStructures::ProhibitCascadingIfElse]
+#    Don't write long "if-elsif-elsif-elsif-elsif...else" chains. [Severity
+#    3]
+#    [EP #77] - R
+severity = 4
+
+[ControlStructures::ProhibitDeepNests]
+#    Don't write deeply nested loops and conditionals. [Severity 2]
+#    [EP #???] - XXX
+
+[ControlStructures::ProhibitMutatingListFunctions]
+#    Don't modify $_ in list functions [Severity 5]
+#    [EP #76] - R
+severity = 4
+
+[ControlStructures::ProhibitPostfixControls]
+#    Write "if($condition){ do_something() }" instead of "do_something() if
+#    $condition" [Severity 2]
+#    [EP #63] - R
+severity = 4
+
+[ControlStructures::ProhibitUnlessBlocks]
+#    Write "if(! $condition)" instead of "unless($condition)" [Severity 2]
+#    [EP #66] - R
+severity = 4
+
+[ControlStructures::ProhibitUnreachableCode]
+#    Don't write code after an unconditional "die, exit, or next". [Severity
+#    4]
+#    [EP #???] - XXX
+
+[ControlStructures::ProhibitUntilBlocks]
+#    Write "while(! $condition)" instead of "until($condition)" [Severity 2]
+#    [EP #66] - R
+severity = 4
+
+[Documentation::RequirePodAtEnd]
+#    All POD should be after "__END__" [Severity 1]
+#    [EP #90] - DC
+severity = 2
+
+[Documentation::RequirePodSections]
+#    Organize your POD into the customary sections. [Severity 2]
+#    [EP #86] - R
+severity = 4
+
+[ErrorHandling::RequireCarping]
+#    Use functions from Carp instead of "warn" or "die". [Severity 3]
+#    [EP #176] - R
+severity = 4
+
+[InputOutput::ProhibitBacktickOperators]
+#    Discourage stuff like "@files = `ls $directory`" [Severity 3]
+#    [EP #???] - XXX
+
+[InputOutput::ProhibitBarewordFileHandles]
+#    Write "open my $fh, q{<}, $filename;" instead of "open FH, q{<},
+#    $filename;" [Severity 5]
+#    [EP #125] - A
+severity = 5
+
+[InputOutput::ProhibitInteractiveTest]
+#    Use prompt() instead of -t [Severity 5]
+#    [EP #137?] - R
+severity = 4
+
+[InputOutput::ProhibitOneArgSelect]
+#    Never write "select($fh)" [Severity 4]
+#    [EP #???] - XXX
+
+[InputOutput::ProhibitReadlineInForLoop]
+#    Write "while( $line = <> ){...}" instead of "for(<>){...}" [Severity 4]
+#    [EP #131] - A
+severity = 5
+
+[InputOutput::ProhibitTwoArgOpen]
+#    Write "open $fh, q{<}, $filename;" instead of "open $fh, "<$filename";"
+#    [Severity 5]
+#    [EP #???] - XXX
+
+[InputOutput::RequireCheckedOpen]
+#    Write "my $error = open $fh, $mode, $filename;" instead of "open $fh,
+#    $mode, $filename;" [Severity 3]
+#    [EP #129] - A
+severity = 5
+
+[InputOutput::RequireCheckedClose]
+#    Write "my $error = close $fh;" instead of "close $fh;" [Severity 3]
+#    [EP #129] - A
+severity = 5
+
+[InputOutput::RequireBracedFileHandleWithPrint]
+#    Write "print {$FH} $foo, $bar;" instead of "print $FH $foo, $bar;"
+#    [Severity 1]
+#    [EP #136] - DC
+severity = 2
+
+[Miscellanea::ProhibitFormats]
+#    Do not use "format". [Severity 3]
+#    [EP #245] - A
+severity = 5
+
+[Miscellanea::ProhibitTies]
+#    Do not use "tie". [Severity 2]
+#    [EP #246] - R
+severity = 4
+
+[Miscellanea::RequireRcsKeywords]
+#    Put source-control keywords in every file. [Severity 2]
+#    [EP #???] - XXX
+
+[Modules::ProhibitAutomaticExportation]
+#    Export symbols via @EXPORT_OK or %EXPORT_TAGS instead of @EXPORT.
+#    [Severity 3]
+#    [EP #223] - A
+severity = 5
+
+[Modules::ProhibitEvilModules]
+#    Ban modules that aren't blessed by your shop. [Severity 5]
+#    [EP #???] - XXX
+
+[Modules::ProhibitExcessMainComplexity]
+#    Minimize complexity in code that is outside of subroutines. [Severity 3]
+#    [EP #???] - XXX
+
+[Modules::ProhibitMultiplePackages]
+#    Put packages (especially subclasses) in separate files. [Severity 4]
+#    [EP #???] - XXX (guessing A)
+
+[Modules::RequireBarewordIncludes]
+#    Write "require Module" instead of "require 'Module.pm'" [Severity 5]
+#    [EP #???] - XXX
+
+[Modules::RequireEndWithOne]
+#    End each module with an explicitly "1;" instead of some funky
+#    expression. [Severity 4]
+#    [EP #???] - XXX (guessing A)
+
+[Modules::RequireExplicitPackage]
+#    Always make the "package" explicit. [Severity 4]
+#    [EP #???] - XXX (guessing A)
+
+[Modules::RequireFilenameMatchesPackage]
+#    Package declaration must match filename [Severity 5]
+#    [EP #???] - XXX (guessing A)
+
+[Modules::RequireVersionVar]
+#    Give every module a $VERSION number. [Severity 2]
+#    [EP #???] - XXX
+
+[NamingConventions::ProhibitAmbiguousNames]
+#    Don't use vague variable or subroutine names like 'last' or 'record'.
+#    [Severity 3]
+#    [EP #31] - A
+severity = 5
+
+[NamingConventions::ProhibitMixedCaseSubs]
+#    Write "sub my_function{}" instead of "sub MyFunction{}" [Severity 1]
+#    [EP #27] - A
+severity = 5
+
+[NamingConventions::ProhibitMixedCaseVars]
+#    Write "$my_variable = 42" instead of "$MyVariable = 42" [Severity 1]
+#    [EP #27] - A
+severity = 5
+
+[References::ProhibitDoubleSigils]
+#    Write "@{ $array_ref }" instead of @$array_ref [Severity 2]
+#    [EP #144] - A (although ok for simple cases, i.e. C<@$foo>)
+
+[RegularExpressions::ProhibitCaptureWithoutTest]
+#    Capture variable used outside conditional [Severity 3]
+#    [EP #???] - XXX
+
+[RegularExpressions::RequireExtendedFormatting]
+#    Always use the "/x" modifier with regular expressions. [Severity 2]
+#    [EP #147] - DC
+severity = 2
+
+[RegularExpressions::RequireLineBoundaryMatching]
+#    Always use the "/m" modifier with regular expressions. [Severity 3]
+#    [EP #148] - R
+severity = 4
+
+[Subroutines::ProhibitAmpersandSigils]
+#    Don't call functions with a leading ampersand sigil. [Severity 2]
+#    [EP #113] - A
+severity = 5
+
+[Subroutines::ProhibitBuiltinHomonyms]
+#    Don't declare your own "open" function. [Severity 4]
+#    [EP #114] - A
+severity = 5
+
+[Subroutines::ProhibitExcessComplexity]
+#    Minimize complexity by factoring code into smaller subroutines.
+#    [Severity 3]
+#    [EP #???] - XXX (guessing R)
+
+[Subroutines::ProhibitExplicitReturnUndef]
+#    Return failure with bare "return" instead of "return undef" [Severity 5]
+#    [EP #124] - A
+severity = 5
+
+[Subroutines::ProhibitSubroutinePrototypes]
+#    Don't write "sub my_function (@@) {}" [Severity 5]
+#    [EP #122] - A
+severity = 5
+
+[Subroutines::ProtectPrivateSubs]
+#    Prevent access to private subs in other packages [Severity 3]
+#    [EP #???] - XXX
+
+[Subroutines::RequireFinalReturn]
+#    End every path through a subroutine with an explicit "return" statement.
+#    [Severity 4]
+#    [EP #123] - A
+severity = 5
+
+[TestingAndDebugging::ProhibitNoStrict]
+#    Prohibit various flavors of "no strict" [Severity 5]
+#    [EP #235] - A (perhaps with "## no critic" comments in the relative blocks)
+
+[TestingAndDebugging::ProhibitNoWarnings]
+#    Prohibit various flavors of "no warnings" [Severity 4]
+#    [EP #236] - A (perhaps with "## no critic" comments in the relative blocks)
+
+[TestingAndDebugging::ProhibitProlongedStrictureOverride]
+#    Don't turn off strict for large blocks of code [Severity 4]
+#    [EP #238] - A
+severity = 5
+
+[TestingAndDebugging::RequireTestLabels]
+#    Tests should all have labels [Severity 3]
+#    [EP #???] - XXX
+
+[TestingAndDebugging::RequireUseStrict]
+#    Always "use strict" [Severity 5]
+#    [EP #235] - A
+severity = 5
+
+[TestingAndDebugging::RequireUseWarnings]
+#    Always "use warnings" [Severity 4]
+#    [EP #236] - A
+severity = 5
+
+[ValuesAndExpressions::ProhibitCommaSeparatedStatements]
+#    Don't use the comma operator as a statement separator. [Severity 4]
+#    [EP #47] - R
+severity = 4
+
+[ValuesAndExpressions::ProhibitConstantPragma]
+#    Don't "use constant $FOO => 15" [Severity 4]
+#    [EP #37] - R
+severity = 4
+
+[ValuesAndExpressions::ProhibitEmptyQuotes]
+#    Write "q{}" instead of '' [Severity 2]
+#    [EP #34] - DC
+severity = 2
+
+[ValuesAndExpressions::ProhibitEscapedCharacters]
+#    Write \N{DELETE}" instead of "\x7F", etc. [Severity 2]
+#    [EP #36] - DC
+severity = 2
+
+[ValuesAndExpressions::ProhibitInterpolationOfLiterals]
+#    Always use single quotes for literal strings. [Severity 1]
+#    [EP #33] - A
+severity = 5
+
+[ValuesAndExpressions::ProhibitLeadingZeros]
+#    Write "oct(755)" instead of 0755 [Severity 5]
+#    [EP #38] - A
+severity = 5
+
+[ValuesAndExpressions::ProhibitLongChainsOfMethodCalls]
+#    Long chains of method calls indicate tightly coupled code [Severity 2]
+#    [EP #???] - XXX (probably R)
+
+[ValuesAndExpressions::ProhibitMismatchedOperators]
+#    Don't mix numeric operators with string operands, or vice-versa.
+#    [Severity 3]
+#    [EP #???] - XXX
+
+[ValuesAndExpressions::ProhibitMixedBooleanOperators]
+#    Write " !$foo && $bar || $baz " instead of " not $foo && $bar or $baz"
+#    [Severity 4]
+#    [EP #48] - DC
+severity = 2
+
+[ValuesAndExpressions::ProhibitNoisyQuotes]
+#    Use "q{}" or "qq{}" instead of quotes for awkward-looking strings.
+#    [Severity 2]
+#    [EP #???] - XXX
+
+[ValuesAndExpressions::ProhibitQuotesAsQuotelikeOperatorDelimiters]
+#    Don't use quotes ("'", """, "`") as delimiters for the quote-like
+#    operators. [Severity 3]
+#    [EP #???] - XXX
+
+[ValuesAndExpressions::ProhibitVersionStrings]
+#    Don't use strings like "v1.4" or 1.4.5 when including other modules.
+#    [Severity 3]
+#    [EP #???] - XXX
+
+[ValuesAndExpressions::RequireInterpolationOfMetachars]
+#    Warns that you might have used single quotes when you really wanted
+#    double-quotes. [Severity 1]
+#    [EP #???] - XXX (more of a policy pickiness choice)
+
+[ValuesAndExpressions::RequireNumberSeparators]
+#    Write " 141_234_397.0145 " instead of 141234397.0145 [Severity 2]
+#    [EP #39] - R
+severity = 4
+
+[ValuesAndExpressions::RequireQuotedHeredocTerminator]
+#    Write " print <<'THE_END' " or " print <<"THE_END" " [Severity 3]
+#    [EP #44] - R
+severity = 4
+
+[ValuesAndExpressions::RequireUpperCaseHeredocTerminator]
+#    Write " <<'THE_END'; " instead of " <<'theEnd'; " [Severity 1]
+#    [EP #43] - R
+severity = 4
+
+[Variables::ProhibitConditionalDeclarations]
+#    Do not write " my $foo = $bar if $baz; " [Severity 5]
+#    [EP #???] - XXX (probably R)
+
+[Variables::ProhibitLocalVars]
+#    Use "my" instead of "local", except when you have to. [Severity 2]
+#    [EP #???] - XXX (probably R)
+
+[Variables::ProhibitMatchVars]
+#    Avoid $`, $&, $' and their English equivalents. [Severity 4]
+#    [EP #57] - A
+severity = 5
+
+[Variables::ProhibitPackageVars]
+#    Eliminate globals declared with "our" or "use vars" [Severity 3]
+#    [EP #52] - R
+severity = 4
+
+[Variables::ProhibitPerl4PackageNames]
+#    Use double colon (::) to separate package name components instead of
+#    single quotes ('). [Severity 2]
+#    [EP #???] - XXX (probably A)
+
+[Variables::ProhibitPunctuationVars]
+#    Write $EVAL_ERROR instead of $@ [Severity 2]
+#    [EP #55] - DC
+severity = 2
+
+[Variables::ProtectPrivateVars]
+#    Prevent access to private vars in other packages [Severity 3]
+#    [EP #???] - XXX (probably R)
+
+[Variables::RequireInitializationForLocalVars]
+#    Write "local $foo = $bar;" instead of just "local $foo;" [Severity 3]
+#    [EP #54] - DC
+severity = 2
+
+[Variables::RequireLexicalLoopIterators]
+#    Write "for my $element (@list) {...}" instead of "for $element (@list)
+#    {...}"
+#    [EP #70] - R
+severity = 4
+
+[Variables::RequireNegativeIndices]
+#    Negative array index should be used [Severity 4]
+#    [EP #59] - A
+severity = 5
