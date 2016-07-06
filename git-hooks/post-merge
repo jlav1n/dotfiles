@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# runs after git-merge or git-pull
-#
-
-mvperm -r
