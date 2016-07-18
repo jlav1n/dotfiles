@@ -21,6 +21,8 @@ bind '"\C-d":complete'
 
 shopt -s histverify
 
+#source ~/.u/jlavin/git-completion.bash
+
 function tmux_alias {
     tmux -f ~/.u/jlavin/tmux.conf -L jlavin attach -t ${1:-$USER} || tmux -f ~/.u/jlavin/tmux.conf -L jlavin new -s ${1:-$USER}
 }
