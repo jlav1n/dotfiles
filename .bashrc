@@ -11,6 +11,7 @@ alias ci='camp-info'
 alias cia='camp-info --all'
 alias cls='printf "\033c"'
 alias dir='ls -l --color=auto'
+alias hg='history | grep'
 alias ll='ls -l --color=auto'
 alias S='screen -c ~/.u/jlavin/screenrc -x -S ${1:-$USER} || screen -c ~/.u/jlavin/screenrc -S ${1:-$USER}'
 alias sl='screen -ls'
@@ -52,6 +53,6 @@ if [ ! -z "$SSH_AUTH_SOCK" ]; then
     fi
 fi
 
-alias prove='/home/camp/.plenv/shims/prove'
+alias prove='/home/camp/.plenv/shims/prove -r'
 
 export PERLDOC_PAGER='less -+C'
