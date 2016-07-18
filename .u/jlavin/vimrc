@@ -105,6 +105,8 @@ filetype plugin on
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 autocmd FileType css setlocal tabstop=2 shiftwidth=2
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
 command! Q q " Bind :Q to :q
@@ -127,7 +129,9 @@ augroup mkd
 augroup END
 
 au BufNewFile,BufRead *.hbs set filetype=html
+au BufNewFile,BufRead *.tt2 set filetype=html
 au BufNewFile,BufRead *.t set filetype=perl
+au BufNewFile,BufRead *.psgi set filetype=perl
 au BufNewFile,BufRead *.pl6 set filetype=perl6
 au BufNewFile,BufRead *.pm6 set filetype=perl6
 
