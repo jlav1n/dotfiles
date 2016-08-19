@@ -1,0 +1,7 @@
+--maximum-line-length=150
+# from pbp:
+--continuation-indentation=4
+--block-brace-tightness=1
+--nospace-for-semicolon
+--nooutdent-long-quotes
+-wbb="% + - * / x != == >= <= =~ !~ < > | & >= < = **= += *= &= <<= &&= -= /= |\= >>= ||= .= %= ^= x="  # Break before all operators
