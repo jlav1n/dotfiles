@@ -7,3 +7,5 @@ nmap <leader>w :w <Bar> :!perl -Ilib -Icustom/lib -wc %<CR>
 vmap <leader>r !perl<CR>
 nmap <leader>r :w <Bar> !clear && perl %<CR>
 "nmap <leader>st :!prove -v <CR>
+
+let perl_sub_signatures = 1
