@@ -21,7 +21,7 @@ bind '"\C-d":complete'
 
 shopt -s histverify
 
-#source ~/.u/jlavin/.git-completion.bash
+source ~/.u/jlavin/.git-completion.bash
 
 source ~/.u/jlavin/.git-prompt.sh
 
