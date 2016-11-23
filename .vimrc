@@ -1,4 +1,4 @@
-set expandtab tabstop=4 shiftwidth=4
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set ai ignorecase smartcase smarttab hlsearch incsearch copyindent
 set autowrite
 
@@ -36,6 +36,10 @@ filetype plugin on
 " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" move visually-selected blocks up/down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 autocmd FileType css setlocal tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
@@ -50,12 +54,6 @@ set wildmenu
 " What to do when I press 'wildchar'. Worth tweaking to see what feels right.
 set wildmode=list:full
 
-command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q -l=150
-noremap <F4> :Tidy<CR>
-
-command -range=% -nargs=* HTMLTidy <line1>,<line2>!tidy -q -wrap 150
-noremap <F5> :HTMLTidy<CR>
-
 augroup mkd
   autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:>
 augroup END
@@ -66,6 +64,7 @@ au BufNewFile,BufRead *.t set filetype=perl
 au BufNewFile,BufRead *.psgi set filetype=perl
 au BufNewFile,BufRead *.pl6 set filetype=perl6
 au BufNewFile,BufRead *.pm6 set filetype=perl6
+au BufNewFile,BufRead *.pgsql set filetype=sql
 
 highlight Search ctermfg=Black
 "highlight Visual ctermfg=Black
@@ -83,11 +82,3 @@ highlight WarningMsg ctermfg=white ctermbg=red guifg=White guibg=Red gui=None
 set tags=./tags;
 
 execute pathogen#infect()
-
-" dbext
-"let g:dbext_default_buffer_lines = 20
-"let g:dbext_default_history_file = '~/.dbext_history'
-"let g:dbext_default_history_size = 5000
-" profiles:
-"let g:dbext_default_profile_mysite = 'type=MYSQL:user=USER:passwd=PASS:dbname=MYSITE'
-"let g:dbext_default_profile = 'mysite'
