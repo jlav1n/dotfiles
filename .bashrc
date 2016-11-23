@@ -10,7 +10,7 @@ PATH=$HOME/.local/bin:$HOME/bin:/opt/endpoint/perl-5.22.0/bin:~camp/bin:$PATH
 alias ci='camp-info'
 alias cia='camp-info --all'
 alias cls='printf "\033c"'
-alias dir='ls -l --color=auto'
+alias gst='git status'
 alias hg='history | grep'
 alias ll='ls -l --color=auto'
 alias S='screen -c ~/.u/jlavin/screenrc -x -S ${1:-$USER} || screen -c ~/.u/jlavin/screenrc -S ${1:-$USER}'
