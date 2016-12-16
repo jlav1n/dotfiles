@@ -8,7 +8,7 @@ vmap <leader>r !perl<CR>
 nmap <leader>r :w <Bar> !clear && perl %<CR>
 nmap <leader>p :w <Bar> !clear && prove -lv <CR>
 
-command -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q -l=150
+command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy -q -l=150
 noremap <F4> :Tidy<CR>
 
 let perl_sub_signatures = 1
