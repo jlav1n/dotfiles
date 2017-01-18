@@ -52,13 +52,7 @@ alias prove='/home/camp/.plenv/shims/prove -r'
 
 export PERLDOC_PAGER='less -+C'
 
-#export GIT_CONFIG='/home/someuser/.u/jlavin/gitconfig'
 export XDG_CONFIG_HOME='/home/someuser/.u/jlavin'
-
-export GIT_AUTHOR_NAME="Josh Lavin"
-export GIT_AUTHOR_EMAIL=foo@bar.com
-export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 
 export GIT_EDITOR='vim -u ~/.u/jlavin/vimrc'
 alias vi='vim -u ~/.u/jlavin/vimrc'
