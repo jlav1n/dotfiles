@@ -26,7 +26,7 @@ source ~/.u/jlavin/.git-completion.bash
 source ~/.git-prompt.sh
 
 function tmux_alias {
-    tmux -f ~/.u/jlavin/tmux.conf -L jlavin attach -t ${1:-$USER} || tmux -f ~/.u/jlavin/tmux.conf -L jlavin new -s ${1:-$USER}
+    tmux -f ~/.tmux.conf -L jlavin attach -t ${1:-$USER} || tmux -f ~/.tmux.conf -L jlavin new -s ${1:-$USER}
 }
 
 
@@ -47,7 +47,11 @@ if [ ! -z "$SSH_AUTH_SOCK" ]; then
         ln -snf ${SSH_AUTH_SOCK} ${screen_ssh_agent}
     fi
 fi
+alias fixssh='export $(tmux showenv SSH_AUTH_SOCK)'
+#alias fixssh='export $(tmux show-env | grep SSH_AUTH_SOCK)'
 
 alias prove='/home/camp/.plenv/shims/prove -r'
 
 export PERLDOC_PAGER='less -+C'
+
+#export TERM=xterm-256color

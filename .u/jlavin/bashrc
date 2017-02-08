@@ -47,12 +47,14 @@ if [ ! -z "$SSH_AUTH_SOCK" ]; then
         ln -snf ${SSH_AUTH_SOCK} ${screen_ssh_agent}
     fi
 fi
+alias fixssh='export $(tmux showenv SSH_AUTH_SOCK)'
+#alias fixssh='export $(tmux show-env | grep SSH_AUTH_SOCK)'
 
 alias prove='/home/camp/.plenv/shims/prove -r'
 
 export PERLDOC_PAGER='less -+C'
 
-export XDG_CONFIG_HOME='/home/someuser/.u/jlavin'
+export XDG_CONFIG_HOME=${HOME}/.u/jlavin
 
 export GIT_EDITOR='vim -u ~/.u/jlavin/vimrc'
 alias vi='vim -u ~/.u/jlavin/vimrc'
