@@ -40,7 +40,7 @@ export EDITOR=vim
 # ssh agent handling
 mkdir -p ~/.state
 if [ ! -z "$SSH_AUTH_SOCK" ]; then
-    screen_ssh_agent=${HOME}/.state/ssh-agent-screen
+    screen_ssh_agent=${HOME}/.u/jlavin/.state/ssh-agent-screen
     if [ "$TERM" = "screen" ]; then
         SSH_AUTH_SOCK=${screen_ssh_agent}; export SSH_AUTH_SOCK
     else
