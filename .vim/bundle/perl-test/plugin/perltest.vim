@@ -1,4 +1,4 @@
-let g:testfile = 't/' . tolower(substitute(escape(expand("%:t"),' '),'\.pm$','.t',''))
+let g:testfile = 't/' . tolower(substitute(substitute(escape(expand("%:."),' '),'lib/','',''),'\.pm$','.t',''))
 
 function! Prove ( verbose )
     let s:params = " "
