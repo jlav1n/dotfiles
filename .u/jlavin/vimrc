@@ -151,11 +151,3 @@ highlight WarningMsg ctermfg=white ctermbg=red guifg=White guibg=Red gui=None
 set tags=./tags;
 
 execute pathogen#infect()
-
-" dbext
-"let g:dbext_default_buffer_lines = 20
-"let g:dbext_default_history_file = '~/.dbext_history'
-"let g:dbext_default_history_size = 5000
-" profiles:
-"let g:dbext_default_profile_mysite = 'type=MYSQL:user=USER:passwd=PASS:dbname=MYSITE'
-"let g:dbext_default_profile = 'mysite'
