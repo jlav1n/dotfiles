@@ -50,7 +50,8 @@ alias fixssh='export $(tmux showenv SSH_AUTH_SOCK)'
 
 export PERLDOC_PAGER='less -+C'
 
-# local perl5 - put in PATH: $HOME/perl5/bin
+# local perl5
+#PATH=$HOME/perl5/bin:$PATH
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
 #export GIT_CONFIG=${HOME}/.u/jlavin/git/config
