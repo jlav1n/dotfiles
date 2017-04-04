@@ -22,13 +22,11 @@ bind '"\C-d":complete'
 shopt -s histverify
 
 source ~/.u/jlavin/.git-completion.bash
-
 source ~/.git-prompt.sh
 
 function tmux_alias {
     tmux -f ~/.tmux.conf -L jlavin attach -t ${1:-$USER} || tmux -f ~/.tmux.conf -L jlavin new -s ${1:-$USER}
 }
-
 
 export PROMPT_DIRTRIM=3
 export PROMPT_COMMAND='__git_ps1 "\u@\h \[\033[1;33m\]\w\[\033[0m\]" "\\\$ "'
@@ -50,8 +48,12 @@ fi
 alias fixssh='export $(tmux showenv SSH_AUTH_SOCK)'
 #alias fixssh='export $(tmux show-env | grep SSH_AUTH_SOCK)'
 
-alias prove='/home/camp/.plenv/shims/prove -r'
-
 export PERLDOC_PAGER='less -+C'
 
+# local perl5 - put in PATH: $HOME/perl5/bin
+#eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+
+#export GIT_CONFIG=${HOME}/.u/jlavin/git/config
+#alias prove='/home/camp/.plenv/shims/prove -r'
+#alias re='i/bin/restart'
 #export TERM=xterm-256color
