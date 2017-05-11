@@ -29,8 +29,6 @@ nmap <leader>T :set noexpandtab<CR>
 
 " fix syntax redraw problems:
 autocmd BufEnter * :syntax sync fromstart
-"noremap <S-F12> <Esc>:syntax sync fromstart<CR>
-"inoremap <S-F12> <C-o>:syntax sync fromstart<CR>
 
 filetype plugin on 
 " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
@@ -43,16 +41,8 @@ vnoremap K :m '<-2<CR>gv=gv
 autocmd FileType css setlocal tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
+autocmd FileType go setlocal noexpandtab
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
-
-command! Q q " Bind :Q to :q
-command! W w
-command! Wq wq
-
-" Better? completion on command line
-set wildmenu
-" What to do when I press 'wildchar'. Worth tweaking to see what feels right.
-set wildmode=list:full
 
 augroup mkd
   autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:>
@@ -66,8 +56,23 @@ au BufNewFile,BufRead *.pl6 set filetype=perl6
 au BufNewFile,BufRead *.pm6 set filetype=perl6
 au BufNewFile,BufRead *.pgsql set filetype=sql
 
+command! Q q " Bind :Q to :q
+command! W w
+command! Wq wq
+
+" Better? completion on command line
+set wildmenu
+" What to do when I press 'wildchar'. Worth tweaking to see what feels right.
+set wildmode=list:full
+
+" jump to last cursor position
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+
+set undofile  " Maintain undo history between sessions
+set undodir=~/.vim/undodir
+
 highlight Search ctermfg=Black
-"highlight Visual ctermfg=Black
 highlight DiffAdd ctermfg=Black
 highlight DiffChange ctermfg=Black
 highlight ColorColumn ctermfg=Black
