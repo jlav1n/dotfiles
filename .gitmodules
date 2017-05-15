@@ -1,3 +1,6 @@
 [submodule ".u/jlavin/.vim/bundle/vim-perl"]
 	path = .u/jlavin/.vim/bundle/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
+[submodule ".u/jlavin/.vim/bundle/alt-ctags"]
+	path = .u/jlavin/.vim/bundle/alt-ctags
+	url = https://github.com/pbrisbin/vim-alt-ctags.git
