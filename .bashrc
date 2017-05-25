@@ -6,7 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-PATH=$HOME/.local/bin:$HOME/bin:/opt/endpoint/perl-5.22.0/bin:~camp/bin:$PATH
+PATH=$HOME/bin:/opt/endpoint/perl-5.22.0/bin:~camp/bin:$HOME/perl5/bin:$PATH
 alias ci='camp-info'
 alias cia='camp-info --all'
 alias cls='printf "\033c"'
@@ -21,7 +21,7 @@ bind '"\C-d":complete'
 
 shopt -s histverify
 
-source ~/.u/jlavin/.git-completion.bash
+source ~/.git-completion.bash
 source ~/.git-prompt.sh
 
 function tmux_alias {
@@ -51,7 +51,6 @@ alias fixssh='export $(tmux showenv SSH_AUTH_SOCK)'
 export PERLDOC_PAGER='less -+C'
 
 # local perl5
-#PATH=$HOME/perl5/bin:$PATH
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
 #export GIT_CONFIG=${HOME}/.u/jlavin/git/config
