@@ -61,3 +61,12 @@ alias vi='vim -u ~/.u/jlavin/vimrc'
 #alias prove='/home/camp/.plenv/shims/prove -r'
 #alias re='i/bin/restart'
 #export TERM=xterm-256color
+
+mygrants()
+{
+  mysql -B -N $@ -e "SELECT DISTINCT CONCAT(
+    'SHOW GRANTS FOR \'', user, '\'@\'', host, '\';'
+    ) AS query FROM mysql.user" | \
+  mysql -r $@ | \
+  sed 's/\(GRANT .*\)/\1;/;s/^\(Grants for .*\)/## \1 ##/;/##/{x;p;x;}'
+}
