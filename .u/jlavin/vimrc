@@ -74,9 +74,11 @@ syntax on
 
 let $BASH_ENV = '~/.u/jlavin/.bash_aliases_for_vim'
 
+let perl_sub_signatures = 1  " this has to be here, above the plugin
+
 set matchpairs+=<:>
 map  <leader>f !G perl -MText::Autoformat -X -e 'autoformat { tabspace => 4 }'
-vmap <leader>f !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1}'
+vmap <leader>f !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1,break=>break_wrap}'
 vmap    _L      "zxi[L][/L]F["zP
 map		<F12>	:if exists("syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif<CR>
 
