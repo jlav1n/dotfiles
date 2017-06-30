@@ -157,3 +157,5 @@ highlight WarningMsg ctermfg=white ctermbg=red guifg=White guibg=Red gui=None
 set tags=./tags;
 
 execute pathogen#infect()
+
+set wildignore+=*/.git/*
