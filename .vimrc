@@ -1,6 +1,7 @@
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set ai ignorecase smartcase smarttab hlsearch incsearch copyindent
 set autowrite
+set foldcolumn=0
 
 syntax on
 
@@ -67,11 +68,11 @@ set wildmenu
 " What to do when I press 'wildchar'. Worth tweaking to see what feels right.
 set wildmode=list:full
 
-" jump to last cursor position
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+" jump to last cursor position - the Enter cmd has issues
+"au BufWinLeave * mkview
+"au BufWinEnter * silent loadview
 
-set undofile  " Maintain undo history between sessions
+set undofile  " Maintain undo history between sessions - v 7.3
 set undodir=~/.vim/undodir
 
 highlight Search ctermfg=Black
