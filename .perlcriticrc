@@ -1,3 +1,9 @@
+[TestingAndDebugging::RequireUseStrict]
+equivalent_modules = Moo
+
+[TestingAndDebugging::RequireUseWarnings]
+equivalent_modules = Moo
+
 # Encapsulation of End Point's PBP Stances in a format Perl::Critic can read
 #
 # Here are the list of severities we're assigning to each of EP's weightings:
@@ -241,7 +247,7 @@ severity = 5
 #    [EP #246] - R
 severity = 4
 
-[Miscellanea::RequireRcsKeywords]
+#[Miscellanea::RequireRcsKeywords]
 #    Put source-control keywords in every file. [Severity 2]
 #    [EP #???] - XXX
 
@@ -290,13 +296,8 @@ severity = 5
 #    [EP #31] - A
 severity = 5
 
-[NamingConventions::ProhibitMixedCaseSubs]
+[NamingConventions::Capitalization]
 #    Write "sub my_function{}" instead of "sub MyFunction{}" [Severity 1]
-#    [EP #27] - A
-severity = 5
-
-[NamingConventions::ProhibitMixedCaseVars]
-#    Write "$my_variable = 42" instead of "$MyVariable = 42" [Severity 1]
 #    [EP #27] - A
 severity = 5
 
