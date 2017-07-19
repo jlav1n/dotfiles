@@ -37,10 +37,6 @@ filetype plugin on
 " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" move visually-selected blocks up/down
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
 autocmd FileType css setlocal tabstop=2 shiftwidth=2
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
