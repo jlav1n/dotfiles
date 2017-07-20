@@ -1,5 +1,6 @@
 #!/bin/sh
 
-scp .*rc .bash_aliases_for_vim .*.bash .*.sh .gitconfig .tmux.conf $1:
+scp .*rc .bash_aliases_for_vim .*.bash .*.sh .gitconfig .tmux.conf cpanfile $1:
+rsync -av --delete bin $1:
 rsync -av --delete .vim $1:
 rsync -av --delete .u $1:
