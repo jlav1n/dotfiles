@@ -13,6 +13,7 @@ alias cls='printf "\033c"'
 alias gst='git status'
 alias hg='history | grep'
 alias ll='ls -l --color=auto'
+alias r='ssh -l root'
 alias S='screen -c ~/.u/jlavin/screenrc -x -S ${1:-$USER} || screen -c ~/.u/jlavin/screenrc -S ${1:-$USER}'
 alias sl='screen -ls'
 alias T=tmux_alias
