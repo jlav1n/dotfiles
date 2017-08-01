@@ -56,9 +56,9 @@ export GIT_EDITOR='vim -u ~/.u/jlavin/vimrc'
 alias vi='vim -u ~/.u/jlavin/vimrc'
 
 # local perl5 - install cpanm with: https://github.com/miyagawa/cpanminus#downloading-the-standalone-executable
-# then: cpanm -l .u/jlavin/perl5 local::lib
-# then, install modules with: cpanm -l .u/jlavin/perl5 <Module>
-#alias cpanm='~/.u/jlavin/bin/cpanm -l .u/jlavin/perl5'
+# then: cpanm -l ~/.u/jlavin/perl5 local::lib
+# then, install modules with: cpanm -l ~/.u/jlavin/perl5 <Module>
+#alias cpanm='~/.u/jlavin/bin/cpanm -l ~/.u/jlavin/perl5'
 #eval $(perl -I ~/.u/jlavin/perl5/lib/perl5/ -Mlocal::lib=$HOME/.u/jlavin/perl5)
 
 #export GIT_CONFIG=${HOME}/.u/jlavin/git/config
