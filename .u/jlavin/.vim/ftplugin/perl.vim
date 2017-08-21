@@ -10,6 +10,10 @@ nmap <leader>w :w <Bar> !clear && perl -Ilib -Icustom/lib -wc %<CR>
 vmap <leader>r !perl<CR>
 nmap <leader>r :w <Bar> !clear && perl %<CR>
 
+" run with Dwarn
+vmap <leader>d !perl -MDevel::Dwarn<CR>
+nmap <leader>d :w <Bar> !clear && perl -MDevel::Dwarn %<CR>
+
 " critic
 nmap <leader>c :w <Bar> !clear && perlcritic -p ~/.u/jlavin/.perlcriticrc %<CR>
 
