@@ -1,5 +1,4 @@
 shopt -s expand_aliases
 alias hg='history | grep'
 alias ll='ls -l --color=auto'
-alias prove='/home/camp/.plenv/shims/prove'
 alias cn='perl -I../../../lib -I../../lib -wc'

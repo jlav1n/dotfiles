@@ -5,7 +5,7 @@ function! Prove ( verbose )
     if a:verbose
         let s:params = s:params . " -v "
     endif
-    execute "!/home/camp/.plenv/shims/prove -Ilib -Icustom/lib" . s:params . g:testfile
+    execute "!prove -Ilib -Icustom/lib" . s:params . g:testfile
 endfunction
 
 nmap <leader>p :call Prove (0)<cr>
