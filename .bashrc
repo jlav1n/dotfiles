@@ -36,16 +36,6 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export HISTTIMEFORMAT="%F %T "
 export EDITOR=vim
 
-# ssh agent handling
-mkdir -p ~/.state
-if [ ! -z "$SSH_AUTH_SOCK" ]; then
-    screen_ssh_agent=${HOME}/.state/ssh-agent-screen
-    if [ "$TERM" = "screen" ]; then
-        SSH_AUTH_SOCK=${screen_ssh_agent}; export SSH_AUTH_SOCK
-    else
-        ln -snf ${SSH_AUTH_SOCK} ${screen_ssh_agent}
-    fi
-fi
 alias fixssh='export $(tmux showenv SSH_AUTH_SOCK)'
 #alias fixssh='export $(tmux show-env | grep SSH_AUTH_SOCK)'
 
