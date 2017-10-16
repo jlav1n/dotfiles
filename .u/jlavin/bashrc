@@ -6,7 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-PATH=$HOME/bin:$HOME/perl5/bin:$HOME/.u/jlavin/perl5/bin:$PATH
+PATH=$HOME/bin:$HOME/.u/jlavin/bin:$HOME/.u/jlavin/perl5/bin:$PATH
 alias ci='camp-info'
 alias cia='camp-info --all'
 alias cls='printf "\033c"'
