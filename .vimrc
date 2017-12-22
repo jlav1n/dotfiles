@@ -68,9 +68,6 @@ set wildmode=list:full
 "au BufWinLeave * mkview
 "au BufWinEnter * silent loadview
 
-set undofile  " Maintain undo history between sessions - v 7.3
-set undodir=~/.vim/undodir
-
 highlight Search ctermfg=Black
 highlight DiffAdd ctermfg=Black
 highlight DiffChange ctermfg=Black
