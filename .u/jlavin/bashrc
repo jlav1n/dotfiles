@@ -10,6 +10,7 @@ PATH=$HOME/bin:$HOME/.u/jlavin/bin:$HOME/.u/jlavin/perl5/bin:$PATH
 alias ci='camp-info'
 alias cia='camp-info --all'
 alias cls='printf "\033c"'
+alias g=git
 alias gst='git status'
 alias hg='history | grep'
 alias ll='ls -l --color=auto'

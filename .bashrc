@@ -10,6 +10,7 @@ PATH=$HOME/bin:/opt/endpoint/perl-5.22.0/bin:~camp/bin:$HOME/perl5/bin:$PATH
 alias ci='camp-info'
 alias cia='camp-info --all'
 alias cls='printf "\033c"'
+alias g=git
 alias gst='git status'
 alias hg='history | grep'
 alias ll='ls -l --color=auto'
