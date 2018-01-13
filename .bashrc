@@ -19,6 +19,7 @@ alias S='screen -c ~/.u/jlavin/screenrc -x -S ${1:-$USER} || screen -c ~/.u/jlav
 alias sl='screen -ls'
 alias T=tmux_alias
 alias tl='tmux -L jlavin ls'
+alias vi=vim
 
 bind '"\C-d":complete'
 bind -m vi-insert "\C-l":clear-screen
