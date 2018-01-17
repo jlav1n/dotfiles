@@ -1,6 +1,6 @@
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set ai ignorecase smartcase smarttab hlsearch incsearch copyindent
-set autowrite
+"set autowrite
 set foldcolumn=0
 
 syntax on
