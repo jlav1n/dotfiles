@@ -6,20 +6,18 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-PATH=$HOME/bin:/opt/endpoint/perl-5.22.0/bin:~camp/bin:$HOME/perl5/bin:$PATH
-alias ci='camp-info'
-alias cia='camp-info --all'
+PATH=$HOME/bin:$HOME/perl5/bin:$PATH
 alias cls='printf "\033c"'
 alias g=git
+alias gg='git grep'
 alias gst='git status'
 alias hg='history | grep'
-alias ll='ls -l --color=auto'
+alias ll='ls -l -G'
 alias r='ssh -l root'
-alias S='screen -c ~/.u/jlavin/screenrc -x -S ${1:-$USER} || screen -c ~/.u/jlavin/screenrc -S ${1:-$USER}'
-alias sl='screen -ls'
 alias T=tmux_alias
 alias tl='tmux -L jlavin ls'
 alias vi=vim
+alias w=whois
 
 bind '"\C-d":complete'
 bind -m vi-insert "\C-l":clear-screen
@@ -48,7 +46,4 @@ export PERLDOC_PAGER='less -+C'
 # local perl5
 #eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
-#export GIT_CONFIG=${HOME}/.u/jlavin/git/config
-#alias prove='/home/camp/.plenv/shims/prove -r'
-#alias re='i/bin/restart'
 #export TERM=xterm-256color
