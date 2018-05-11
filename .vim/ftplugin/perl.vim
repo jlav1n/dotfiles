@@ -1,4 +1,4 @@
-let b:ctags_command = "ctags -f '%f' -R --exclude='*.js' --languages=-javascript lib interchange"
+let b:ctags_command = "ctags -f '%f' -R --exclude='*.js' --languages=-javascript lib"
 
 setlocal keywordprg=sh\ -c\ 'perldoc\ -f\ \$1\ \|\|\ perldoc\ \$1'\ --
 
