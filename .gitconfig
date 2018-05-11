@@ -1,0 +1,45 @@
+[user]
+    name = Josh Lavin
+
+[alias]
+    br = branch
+    ci = commit
+    co = checkout
+    di = diff
+    grep-all = !"f() { git rev-list --all | xargs git grep \"$@\"; }; f"  # Find text in any commit ever
+    logr = log --reverse origin..HEAD
+    lp = log --graph --decorate
+    st = status
+    sbranch = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+    tree=log --graph --pretty='format:%C(yellow) %h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
+
+[core]
+    pager = less -R -X -x4
+	excludesfile = /Users/jlavin/.gitignore_global
+
+[rerere]
+	enabled = true
+
+[color]
+    branch = auto
+    diff = auto
+    grep = auto
+    interactive = auto
+    shobranch = auto
+    status = auto
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[github]
+    user = jdigory
