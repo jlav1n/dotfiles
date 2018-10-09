@@ -1,4 +1,4 @@
 shopt -s expand_aliases
+alias g=git
 alias hg='history | grep'
-alias ll='ls -l --color=auto'
-alias cn='perl -I../../../lib -I../../lib -wc'
+alias ll='ls -l -G'
