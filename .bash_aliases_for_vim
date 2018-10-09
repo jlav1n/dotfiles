@@ -1,4 +1,0 @@
-shopt -s expand_aliases
-alias g=git
-alias hg='history | grep'
-alias ll='ls -l -G'

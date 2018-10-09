@@ -21,3 +21,4 @@ command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy
 noremap <F4> :Tidy<CR>
 
 let perl_sub_signatures = 1
+let g:ale_linters = { 'perl': ['perl'] }

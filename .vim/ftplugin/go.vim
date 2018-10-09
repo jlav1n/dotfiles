@@ -1,10 +1,23 @@
-"nmap <leader>r !go install && $GOPATH/bin/%<CR>
-nmap <leader>r :w <Bar> !clear && go run %<CR>
-nmap <leader>p :w <Bar> !clear && go test %<CR>
+" run
+nmap <leader>r :w <Bar> GoRun<CR>
+"nmap <leader>r <Plug>(go-run)
 
-command! -range=% -nargs=* Gofmt <line2>,<line2>!go fmt
+" lint
+nmap <leader>w <Plug>(go-lint)
+
+" all possible linters
+nmap <leader>c <Plug>(go-metalinter)
+
+" build
+nmap <leader>b <Plug>(go-build)
+
+" run test
+nmap <leader>p <Plug>(go-test)
+
+command! -range=% -nargs=* Gofmt <line2>,<line2>GoFmt
 noremap <F4> :Gofmt<CR>
 
 set noexpandtab
 set nu
-let g:ale_enabled = 0
+
+setlocal keywordprg=go\ doc\ \$1

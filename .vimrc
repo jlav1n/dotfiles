@@ -5,8 +5,6 @@ set history=10000
 
 syntax on
 
-let $BASH_ENV = '~/.bash_aliases_for_vim'
-
 let perl_sub_signatures = 1  " this has to be here, above the plugin
 
 set matchpairs+=<:>
@@ -16,6 +14,7 @@ vmap <Leader>b  :<C-U>!git blame -w <C-R>=expand("%:p") <CR> \| sed -n <C-R>=lin
 map  <Leader>l  :!clear && git log %<CR>
 map  <Leader>gg :!clear && git grep
 map  <Leader>L  :Lost<CR>
+vmap <Leader>f  !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1,break=>break_wrap}'<CR>
 
 " Edit another file in the same directory as the current file
 " uses expression to extract path from current file's path
@@ -63,13 +62,14 @@ set wildmenu
 set wildmode=list:full
 
 " jump to last cursor position - the Enter cmd has issues
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+au BufWinLeave *.* mkview
+au BufWinEnter *.* silent loadview
 
 highlight Search ctermfg=Black
 highlight DiffAdd ctermfg=Black
 highlight DiffChange ctermfg=Black
 highlight ColorColumn ctermfg=Black
+"highlight SpellCap ctermfg=Black
 
 " Make the omnicomplete text readable
 highlight PmenuSel ctermfg=white
@@ -81,8 +81,11 @@ highlight WarningMsg ctermfg=white ctermbg=red guifg=White guibg=Red gui=None
 set tags=./tags;
 
 execute pathogen#infect()
+Helptags
 
 set wildignore+=*/.git/*
+
+set updatetime=100  " for gitgutter
 
 "====
 "====[ BEGIN Damian configs         ]=========
@@ -205,7 +208,7 @@ call SmartcomAdd( '^\s*when',  EOL,    " (___) {\n___\n}\n___",                {
 call SmartcomAdd( '^\s*sub',   EOL,    " ___ (___) {\n___\n}\n___",            {'filetype':'perl'} )
 
 call SmartcomAdd( '^\s*wdd',   ANYTHING, "\<BS>\<BS>\<BS>warn Data::Dumper::Dumper(___);", {'filetype':'perl'} )
-call SmartcomAdd( '^\s*dex',   ANYTHING, "\<BS>\<BS>\<BS>diag explain ___;",               {'filetype':'perl'} )
+call SmartcomAdd( '^\s*dex',   ANYTHING, "\<BS>\<BS>\<BS>diag Data::Dumper::Dumper ___;",  {'filetype':'perl'} )
 
 
 " Convert between single- and double-quoted string endings...
@@ -373,8 +376,9 @@ let g:hier_highlight_group_loci = 'Normal'
 "=====[ Configure ALE for error tracking ]==================
 " You also need to install the following:  https://github.com/w0rp/ale
 
-highlight AleError    ctermfg=red     cterm=bold
-highlight AleWarning  ctermfg=magenta cterm=bold
+" these 2 lines cause color issues in Go files:
+"highlight AleError    ctermfg=red     cterm=bold
+"highlight AleWarning  ctermfg=magenta cterm=bold
 
 augroup ALE_Autoconfig
     au!
@@ -387,7 +391,6 @@ augroup END
 let g:ale_set_loclist          = 0
 let g:ale_set_quickfix         = 1
 let g:ale_set_signs            = 0
-let g:ale_linters              = { 'perl': ['perl'] }
 let g:ale_perl_perl_executable = 'polyperl'
 let g:ale_perl_perl_options    = '-cw -Ilib'
 
