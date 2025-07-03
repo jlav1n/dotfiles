@@ -2,6 +2,7 @@ set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set ai ignorecase smartcase smarttab hlsearch incsearch copyindent
 set foldcolumn=0
 set history=10000
+set number
 
 syntax on
 
@@ -138,12 +139,12 @@ set iskeyword-=,
 "=====[ Auto-setup for new files ]===========
 " https://youtu.be/oka4wcsrg0c?t=1m42s
 
-augroup New_File_Setup
-    autocmd!
-    autocmd BufNewFile   *  -1r !vim_file_template <afile>
-    autocmd BufNewFile   *  :silent call search('^[ \t]*[#"].*implementation[ \t]\+here')
-    autocmd BufNewFile   *  :redraw
-augroup END
+"augroup New_File_Setup
+"    autocmd!
+"    autocmd BufNewFile   *  -1r !vim_file_template <afile>
+"    autocmd BufNewFile   *  :silent call search('^[ \t]*[#"].*implementation[ \t]\+here')
+"    autocmd BufNewFile   *  :redraw
+"augroup END
 
 
 " =====[ Smart completion via <TAB> and <S-TAB> ]=============

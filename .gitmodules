@@ -8,3 +8,12 @@
 [submodule ".vim/bundle/vim-lost"]
 	path = .vim/bundle/vim-lost
 	url = git://github.com/frioux/vim-lost
+[submodule ".vim/bundle/ale"]
+	path = .vim/bundle/ale
+	url = https://github.com/dense-analysis/ale
+[submodule ".vim/bundle/vim-gitgutter"]
+	path = .vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule ".vim/bundle/vim-go"]
+	path = .vim/bundle/vim-go
+	url = https://github.com/airblade/vim-gitgutter.git
