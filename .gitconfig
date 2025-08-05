@@ -15,7 +15,7 @@
 
 [core]
     pager = less -R -X -x4
-	excludesfile = /Users/jlavin/.gitignore_global
+	excludesfile = ~/.gitignore_global
 
 [rerere]
 	enabled = true
@@ -43,3 +43,5 @@
     untracked = cyan
 [github]
     user = jlav1n
+[commit]
+	verbose = true
