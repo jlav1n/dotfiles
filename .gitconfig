@@ -7,7 +7,7 @@
     co = checkout
     di = diff
     grep-all = !"f() { git rev-list --all | xargs git grep \"$@\"; }; f"  # Find text in any commit ever
-    logr = log --reverse origin..HEAD
+    logr = log --reverse origin/main..HEAD
     lp = log --graph --decorate
     st = status
     sbranch = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
@@ -43,5 +43,13 @@
     untracked = cyan
 [github]
     user = jlav1n
+
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [commit]
+	gpgsign = true
 	verbose = true
+[rebase]
+	autosquash = true
