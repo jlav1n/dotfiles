@@ -13,7 +13,7 @@ set matchpairs+=<:>
 map		<F12>	:if exists("syntax_on") <Bar> syntax off <Bar> else <Bar> syntax enable <Bar> endif<CR>
 vmap <Leader>b  :<C-U>!git blame -w <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 map  <Leader>l  :!clear && git log %<CR>
-map  <Leader>gg :!clear && git grep
+map  <Leader>gg :!clear && git grep 
 map  <Leader>L  :Lost<CR>
 vmap <Leader>f  !perl -MText::Autoformat -X -0777 -e 'autoformat {all=>1,break=>break_wrap}'<CR>
 

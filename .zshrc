@@ -15,8 +15,11 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 
 # general aliases
-alias ll='ls -l'
 alias aws-profile="grep 'staff@' ~/.aws/config | cut -f2 -d' ' | tr ']' ' '"
+alias glcoud=gcloud
+alias ll='ls -l'
+alias pbopcy=pbcopy
+alias pbocpy=pbcopy
 
 # Git
 function git_current_branch() {
@@ -64,3 +67,11 @@ if [ -f '/Users/l537634/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/Use
 
 # Databricks
 databricks completion zsh > $(brew --prefix)/share/zsh/site-functions/_databricks
+
+# Jump
+eval "$(jump shell)"
+
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/l537634/.config/tfenv/versions/1.13.3/terraform terraform
