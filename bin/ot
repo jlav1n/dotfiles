@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# opens current Git directory in browser, with optional file, with optional line number
+
+repo_url="$(git config --get remote.origin.url | sed -E "s/git@([^:]+):/https:\/\/\1\//" | sed "s/\.git$//")"
+branch="$(git rev-parse --abbrev-ref HEAD)"
+file="$1"
+line="$2"
+
+if [ -n "$file" ]; then
+    url="$repo_url/-/blob/$branch/$file"
+    if [ -n "$line" ]; then
+        url="$url#L$line"
+    fi
+else
+    url="$repo_url"
+fi
+
+open "$url"

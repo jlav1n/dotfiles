@@ -7,7 +7,17 @@
     co = checkout
     di = diff
     grep-all = !"f() { git rev-list --all | xargs git grep \"$@\"; }; f"  # Find text in any commit ever
-    logr = log --reverse origin/main..HEAD
+    logr = "!f() { \
+        branch=$(git rev-parse --abbrev-ref HEAD); \
+        upstream=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream} 2>/dev/null || echo origin/main); \
+        if [ \"$upstream\" = \"origin/$branch\" ]; then \
+            base=origin/main; \
+        else \
+            base=$upstream; \
+        fi; \
+        echo \"Commits in $branch not yet merged into $base\"; \
+        git log --reverse --no-merges $base..$branch \"$@\"; \
+    }; f"
     lp = log --graph --decorate
     st = status
     sbranch = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
@@ -53,3 +63,7 @@
 	verbose = true
 [rebase]
 	autosquash = true
+[push]
+	default = current
+[advice]
+	skippedCherryPicks = false

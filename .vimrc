@@ -1,8 +1,10 @@
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set ai ignorecase smartcase smarttab hlsearch incsearch copyindent
+set shortmess-=S
 set foldcolumn=0
 set history=10000
-set number
+set number autoread
+set shell=/bin/zsh
 
 syntax on
 
@@ -36,10 +38,27 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
 "autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
+" Git / GitHub / GitLab
+nnoremap <leader>gh :call OpenInRepo()<CR>
+function! OpenInRepo()
+    let l:file = expand('%')
+    let l:line = line('.')
+    execute '!ot ' . shellescape(l:file) . ' ' . l:line
+endfunction
+
 " terraform
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 autocmd FileType terraform setlocal tabstop=2 shiftwidth=2
+
+" packer
+augroup packer_fmt
+    autocmd!
+    autocmd BufWritePost *.pkr.hcl silent! !packer fmt %
+    autocmd BufWritePost *.pkr.hcl redraw!
+    autocmd BufWritePost *.pkr.hcl edit
+augroup END
+autocmd FileType packer setlocal tabstop=2 shiftwidth=2
 
 augroup mkd
   autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:>
@@ -60,7 +79,7 @@ command! Wq wq
 " Better? completion on command line
 set wildmenu
 " What to do when I press 'wildchar'. Worth tweaking to see what feels right.
-set wildmode=list:full
+set wildmode=longest:full,full
 
 " jump to last cursor position - the Enter cmd has issues
 au BufWinLeave *.* mkview
@@ -80,6 +99,53 @@ highlight MatchParen ctermfg=black
 highlight WarningMsg ctermfg=white ctermbg=red guifg=White guibg=Red gui=None
 
 set tags=./tags;
+
+" Co-Authored-By function
+function! CoAuthoredBy() range
+    " Get the word under cursor or visual selection
+    if mode() ==# 'v' || mode() ==# 'V'
+        let l:selected = getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]
+    else
+        let l:selected = expand('<cword>')
+    endif
+                                            
+    " Get unique authors from git history matching the selected text
+    let l:git_cmd = 'git log --pretty=format:"%an <%ae>" | sort -u | grep -i ' . shellescape(l:selected)
+    let l:authors = systemlist(l:git_cmd)
+                                                
+    if len(l:authors) == 0
+        echo "No matching author found in git history for: " . l:selected
+        return
+    elseif len(l:authors) == 1
+        let l:chosen = l:authors[0]
+    else
+        " If multiple matches, let user choose
+        let l:choices = ["Select author:"]
+        for i in range(len(l:authors))
+            call add(l:choices, (i+1) . ". " . l:authors[i])
+        endfor
+        let l:choice = inputlist(l:choices)
+        if l:choice < 1 || l:choice > len(l:authors)
+            echo "Cancelled"
+            return
+        endif
+        let l:chosen = l:authors[l:choice - 1]
+    endif
+
+    " Replace the word/selection with Co-authored-by line
+    let l:replacement = "Co-authored-by: " . l:chosen
+
+    if mode() ==# 'v' || mode() ==# 'V'
+        execute "normal! gvc" .  l:replacement
+    else
+        execute "normal! ciw" . l:replacement
+    endif
+endfunction
+
+" Map <leader>cab in normal and visual mode
+nnoremap <leader>cab :call CoAuthoredBy()<CR>
+vnoremap <leader>cab :<C-U>call CoAuthoredBy()<CR>
+
 
 execute pathogen#infect()
 Helptags

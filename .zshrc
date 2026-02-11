@@ -38,17 +38,67 @@ alias g=git
 alias ga='git add'
 alias gc='git commit'
 alias gcm='git checkout main'
-alias gco='git checkout'
 alias gd='git diff'
 alias gg='git grep'
-alias gpsup='git push --set-upstream origin $(git_current_branch)'
+#alias gpsup='glab mr create --fill --web --target-branch $(git rev-parse --abbrev-ref --symbolic-full-name @{upstream} | cut -f2- -d"/" || git remote show origin | awk "/HEAD branch/ {print \$NF}")'
+alias gpsup='glab mr create --fill --web --target-branch $(git rev-parse --abbrev-ref --symbolic-full-name @{upstream} | sed "s|^origin/||" || git remote show origin | awk "/HEAD branch/ {print \$NF}")'
+alias grep='grep -w'
 alias gst='git status'
 alias gunwip='git rev-list --max-count=1 --format="%s" HEAD | grep -q "\--wip--" && git reset HEAD~1'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
 alias git-clean-merged='git branch --merged | grep -vE "\*|main|master" | xargs -n 1 git branch -d'
 
-# opens current Git directory in browser
-alias ot='open "$(git config --get remote.origin.url | sed -E "s/git@([^:]+):/https:\/\/\1\//" | sed "s/\.git$//")"'
+# Git completion settings: prefer local branches when checking out
+zstyle ':completion:*:*:git-checkout:*' tag-order 'local-branches' 'branch'
+zstyle ':completion:*:*:git-checkout:*' local-branches true
+zstyle ':completion:*:*:git-checkout:*' remote-branches false
+
+# Git switch to branch (optionally create new) with tracking
+gco() {
+    local branch=""
+    local create_new=false
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -b)
+                create_new=true
+                shift
+                branch="$1"
+                ;;
+            *)
+                branch="$1"
+                ;;
+        esac
+        shift
+    done
+
+    if [ -z "$branch" ]; then
+        echo "Usage:"
+        echo "  gco -b <new-branch>   # create and track from current branch"
+        echo "  gco <existing-branch> # switch to existing branch"
+        return 1
+    fi
+
+    if $create_new; then
+        #echo "Running: git switch -c $branch --track"
+        git switch -c "$branch" --track
+    else
+        #echo "Running: git switch $branch"
+        git switch "$branch"
+    fi
+}
+compdef _git gco=git-switch
+
+# Open all files from a Git commit in Vim
+gcv() {
+    vim $(git diff-tree --no-commit-id --name-only -r "$1")
+}
+
+# Get GCP role permissions and save to file
+alias gcp-get-role='function _gcp_get_role() {
+  local role="${1#roles/}"
+  gcloud iam roles describe roles/$role --format="value(includedPermissions)" | sed -e "s/;/\\n/g" > ~/src/google/roles/$role
+}; _gcp_get_role'
 
 source ~/.git-prompt.sh
 precmd () { __git_ps1 "%F{yellow}%~" " $ " "\n%s" }
