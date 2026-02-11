@@ -1,9 +1,3 @@
-[submodule ".vim/bundle/alt-ctags"]
-	path = .vim/bundle/alt-ctags
-	url = https://github.com/pbrisbin/vim-alt-ctags.git
-[submodule ".vim/bundle/vim-lost"]
-	path = .vim/bundle/vim-lost
-	url = git://github.com/frioux/vim-lost
 [submodule ".vim/bundle/ale"]
 	path = .vim/bundle/ale
 	url = https://github.com/dense-analysis/ale
@@ -25,3 +19,6 @@
 [submodule ".tmux/plugins/tmux-urlview"]
 	path = .tmux/plugins/tmux-urlview
 	url = https://git::@github.com/tmux-plugins/tmux-urlview
+[submodule ".vim/bundle/vim-lost"]
+	path = .vim/bundle/vim-lost
+	url = https://github.com/frioux/vim-lost
