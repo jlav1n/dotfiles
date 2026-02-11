@@ -15,10 +15,16 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule ".tmux/plugins/tmux-sensible"]
 	path = .tmux/plugins/tmux-sensible
-	url = https://git::@github.com/tmux-plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible
 [submodule ".tmux/plugins/tmux-urlview"]
 	path = .tmux/plugins/tmux-urlview
 	url = https://git::@github.com/tmux-plugins/tmux-urlview
 [submodule ".vim/bundle/vim-lost"]
 	path = .vim/bundle/vim-lost
 	url = https://github.com/frioux/vim-lost
+[submodule ".vim/bundle/copilot.vim"]
+	path = .vim/bundle/copilot.vim
+	url = https://github.com/github/copilot.vim
+[submodule ".vim/bundle/vim-python-pep8-indent"]
+	path = .vim/bundle/vim-python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent

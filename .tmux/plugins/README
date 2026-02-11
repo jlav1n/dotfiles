@@ -4,7 +4,7 @@ See entire list in .gitmodules
 
 e.g.
 ```
-git submodule add https://github.com/frioux/vim-lost .vim/bundle/vim-lost
+git submodule add https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
 ```
 
 Sync and update all submodules:
