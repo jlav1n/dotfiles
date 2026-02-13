@@ -17,7 +17,7 @@ brew "node@22"
 brew "openldap"
 brew "pre-commit"
 brew "pyenv",
-    postinstall: "${HOMEBREW_PREFIX}/bin/pyenv init && ${HOMEBREW_PREFIX}/bin/pyenv install 3.12"
+    postinstall: "${HOMEBREW_PREFIX}/bin/pyenv install 3.12 || true"
 brew "terraform-docs"
 brew "terrascan"
 brew "tfenv"
@@ -31,11 +31,10 @@ brew "urlview"
 brew "wget"
 brew "databricks/tap/databricks"
 brew "hashicorp/tap/packer"
-brew "hashicorp/tap/terraform", link: false
 brew "hashicorp/tap/tf-migrate"
 brew "hashicorp/tap/vault"
 brew "minamijoyo/hcledit/hcledit"
-brew "gemini-cli" if File.exist?(File.expand_path("~/.brew_use_gemini")),
-    postinstall: "pip install google-genai"
+brew("gemini-cli",
+    postinstall: "pip install google-genai") if File.exist?(File.expand_path("~/.brew_use_gemini"))
 cask "1password-cli"
 cask "aws-vault-binary"

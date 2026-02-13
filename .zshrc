@@ -1,7 +1,7 @@
 fpath+=/opt/homebrew/share/zsh/site-functions
 autoload -Uz compinit && compinit
 set -o vi
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$($(brew --prefix)/bin/brew shellenv)"
 
 export PATH=$HOME/bin:$PATH
 
@@ -110,10 +110,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/l537634/src/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/l537634/src/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '~/src/google-cloud-sdk/path.zsh.inc' ]; then . '~/src/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/l537634/src/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/l537634/src/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '~/src/google-cloud-sdk/completion.zsh.inc' ]; then . '~/src/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Databricks
 databricks completion zsh > $(brew --prefix)/share/zsh/site-functions/_databricks
@@ -124,4 +124,4 @@ eval "$(jump shell)"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /Users/l537634/.config/tfenv/versions/1.13.3/terraform terraform
+complete -o nospace -C ~/.config/tfenv/versions/1.13.3/terraform terraform
