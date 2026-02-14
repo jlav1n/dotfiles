@@ -29,6 +29,8 @@ nmap <leader>h :nohlsearch<CR>
 nmap <leader>t :set expandtab<CR>
 nmap <leader>T :set noexpandtab<CR>
 
+let g:python3_host_prog = expand('~/.pyenv/shims/python')
+
 filetype plugin on 
 " http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
