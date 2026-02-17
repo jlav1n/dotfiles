@@ -38,3 +38,4 @@ brew("gemini-cli",
     postinstall: "pip install google-genai") if File.exist?(File.expand_path("~/.brew_use_gemini"))
 cask "1password-cli"
 cask "aws-vault-binary"
+cask "copilot-cli"
