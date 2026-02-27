@@ -110,10 +110,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/src/google-cloud-sdk/path.zsh.inc' ]; then . '~/src/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/src/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/src/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '~/src/google-cloud-sdk/completion.zsh.inc' ]; then . '~/src/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/src/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/src/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Databricks
 databricks completion zsh > $(brew --prefix)/share/zsh/site-functions/_databricks
