@@ -49,9 +49,13 @@ alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commi
 alias git-clean-merged='git branch --merged | grep -vE "\*|main|master" | xargs -n 1 git branch -d'
 
 # Git completion settings: prefer local branches when checking out
-zstyle ':completion:*:*:git-checkout:*' tag-order 'local-branches' 'branch'
-zstyle ':completion:*:*:git-checkout:*' local-branches true
-zstyle ':completion:*:*:git-checkout:*' remote-branches false
+# Custom completion for gco: explicitly list local branches only
+_gco_completion() {
+    local branches
+    branches=($(git branch 2>/dev/null | sed 's/^[* ] //'))
+    _describe 'branch' branches
+}
+compdef _gco_completion gco
 
 # Git switch to branch (optionally create new) with tracking
 gco() {
@@ -80,14 +84,11 @@ gco() {
     fi
 
     if $create_new; then
-        #echo "Running: git switch -c $branch --track"
-        git switch -c "$branch" --track
+        git checkout -b "$branch" --track
     else
-        #echo "Running: git switch $branch"
-        git switch "$branch"
+        git checkout "$branch"
     fi
 }
-compdef _git gco=git-switch
 
 # Open all files from a Git commit in Vim
 gcv() {
