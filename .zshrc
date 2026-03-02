@@ -16,7 +16,7 @@ setopt HIST_FIND_NO_DUPS
 
 # general aliases
 alias aws-profile="grep 'staff@' ~/.aws/config | cut -f2 -d' ' | tr ']' ' '"
-alias glcoud=gcloud
+alias gal='gcloud auth login'
 alias ll='ls -l'
 alias pbopcy=pbcopy
 alias pbocpy=pbcopy
@@ -125,4 +125,4 @@ eval "$(jump shell)"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C ~/.config/tfenv/versions/1.13.3/terraform terraform
+complete -o nospace -C $HOME/.config/tfenv/versions/1.13.3/terraform terraform
