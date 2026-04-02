@@ -39,3 +39,4 @@ brew("gemini-cli",
 cask "1password-cli"
 cask "aws-vault-binary"
 cask "copilot-cli"
+cask "gcloud-cli"

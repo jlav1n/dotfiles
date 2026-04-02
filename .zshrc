@@ -17,6 +17,7 @@ setopt HIST_FIND_NO_DUPS
 # general aliases
 alias aws-profile="grep 'staff@' ~/.aws/config | cut -f2 -d' ' | tr ']' ' '"
 alias gal='gcloud auth login'
+alias gaal='gcloud auth application-default login'
 alias ll='ls -l'
 alias pbopcy=pbcopy
 alias pbocpy=pbcopy
@@ -34,6 +35,7 @@ function gitvimdiff() {
     fi
     vim $(git show --stat "$1" | grep "|" | awk '{print $1}' | sort | uniq)
 }
+alias cgrep='/usr/bin/grep -R --exclude-dir={.git,.github,.terraform} --exclude "*.tfplan" --color=auto'
 alias g=git
 alias ga='git add'
 alias gc='git commit'
@@ -111,10 +113,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/src/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/src/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc" ]; then . "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/src/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/src/google-cloud-sdk/completion.zsh.inc"; fi
+if [ -f "/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc" ]; then . "/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Databricks
 databricks completion zsh > $(brew --prefix)/share/zsh/site-functions/_databricks
