@@ -1,0 +1,9 @@
+{
+  "lspServers": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "fileExtensions": { "tf": "terraform", "tfvars": "terraform", "hcl": "terraform" }
+    }
+  }
+}
